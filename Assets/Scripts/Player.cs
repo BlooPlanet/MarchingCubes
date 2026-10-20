@@ -35,7 +35,19 @@ public class Player : MonoBehaviour {
                     Vector3Int localCubeCoord = coord - chunkCoord;
                     Debug.Log(hit.transform.name);
                     Debug.Log(localCubeCoord);
-                    chunk.SetCube(localCubeCoord);
+                    chunk.SetCube(localCubeCoord,1);
+                    chunk.UpdateMesh();
+                }
+            }else if (Input.GetMouseButtonDown(1)) {
+                Chunk chunk = hit.transform.GetComponent<Chunk>();
+                if (chunk != null) {
+                    Vector3 hitPosition = hit.point + hit.normal * 0.1f;
+                    Vector3Int coord = new Vector3Int((int)hitPosition.x,(int)hitPosition.y,(int)hitPosition.z);
+                    Vector3Int chunkCoord = Vector3Int.FloorToInt(chunk.transform.position);
+                    Vector3Int localCubeCoord = coord - chunkCoord;
+                    Debug.Log(hit.transform.name);
+                    Debug.Log(localCubeCoord);
+                    chunk.SetCube(localCubeCoord,-1);
                     chunk.UpdateMesh();
                 }
             }
