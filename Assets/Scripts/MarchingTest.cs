@@ -10,7 +10,12 @@ public class MarchingTest : MonoBehaviour {
     
     public void Start() {
         marching = new MarchingCube(1,1,1,0,1);
+        marching.SetDensity(new Vector3Int(0,0,0),-1);
+        marching.SetDensity(new Vector3Int(1,0,0),-1);
         Debug.Log("cube config index " + marching.GetCubeIndex(Vector3Int.zero));
+        Mesh mesh = marching.ConstructMesh();
+        mesh.RecalculateNormals();
+        GetComponent<MeshFilter>().mesh = mesh;
     }
 
     public void Update() {

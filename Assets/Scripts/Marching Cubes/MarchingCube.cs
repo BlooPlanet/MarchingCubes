@@ -39,7 +39,7 @@ namespace Marching_Cubes {
             int cubeIndex = 0;
             for (int i = 0; i < MarchingCubeConfigs.CornerTable.Length; i++) {
                 Vector3Int corner = MarchingCubeConfigs.CornerTable[i] + cubeCoord;
-                if (density[GetIndexFromCoord(corner)] < surfaceLevel) {
+                if (density[GetIndexFromCoord(corner)] > surfaceLevel) {
                     cubeIndex |= 1 << i;
                 }
             }
@@ -62,13 +62,20 @@ namespace Marching_Cubes {
 
         public Mesh ConstructMesh() {
             Mesh mesh = new Mesh();
+            List<Vector3> vertices = new List<Vector3>();
+            List<int> triangles = new List<int>();
             for (int x = 0; x < width; x++) {
                 for (int z = 0; z < depth; z++) {
                     for (int y = 0; y < height; y++) {
-                        
+                        Vector3Int cubeCoord = new Vector3Int(x, y, z);
+                        int cubeIndex = GetCubeIndex(cubeCoord);
+                        MarchCube(cubeCoord,cubeIndex,ref vertices,ref triangles);
                     }
                 }
             }
+
+            mesh.vertices = vertices.ToArray();
+            mesh.triangles = triangles.ToArray();
             return mesh;
         }
     }
