@@ -2,8 +2,8 @@ Shader "Custom/MarchingShader"
 {
     Properties
     {
-        _GrassColor ("Grass Color", Color) = (0.2, 0.6, 0.1, 1)
-        _DirtColor ("Dirt Color", Color) = (0.4, 0.25, 0.12, 1)
+        _ColorA ("Grass Color", Color) = (0.2, 0.6, 0.1, 1)
+        _ColorB ("Dirt Color", Color) = (0.4, 0.25, 0.12, 1)
 
         _LightDirection ("Light Direction", Vector) = (0, 1, 0, 0)
         _AmbientStrength ("Ambient Strength", Range(0, 1)) = 0.3
@@ -29,8 +29,8 @@ Shader "Custom/MarchingShader"
             #include "UnityCG.cginc"
             #include "Lighting.cginc"
 
-            fixed4 _GrassColor;
-            fixed4 _DirtColor;
+            fixed4 _ColorA;
+            fixed4 _ColorB;
             float4 _LightDirection;
             float _AmbientStrength;
 
@@ -61,29 +61,15 @@ Shader "Custom/MarchingShader"
             fixed4 frag(v2f i) : SV_Target
             {
                 float3 normal = normalize(i.worldNormal);
-
-                // 1. Determine whether the surface faces upward.
                 float upDot = dot(normal, float3(0, 1, 0));
-
-                // Green on top, dirt on sides and bottom.
                 float grassMask = step(0.7, upDot);
 
-                fixed3 surfaceColor =
-                    lerp(_DirtColor.rgb, _GrassColor.rgb, grassMask);
-
-                // 2. Calculate directional lighting.
+                fixed3 surfaceColor = lerp(_ColorB.rgb, _ColorA.rgb, grassMask);
                 float3 lightDir = normalize(_WorldSpaceLightPos0.xyz);
-
                 float NdotL = saturate(dot(normal, lightDir));
-
-                // 3. Combine ambient and direct light.
                 fixed3 ambient = ShadeSH9(float4(normal, 1));
 
-                fixed3 lighting =
-                    ambient * _AmbientStrength +
-                    _LightColor0.rgb * NdotL;
-
-                // 4. Apply lighting to the surface color.
+                fixed3 lighting = ambient * _AmbientStrength +_LightColor0.rgb * NdotL;
                 fixed3 finalColor = surfaceColor * lighting;
 
                 return fixed4(finalColor, 1);

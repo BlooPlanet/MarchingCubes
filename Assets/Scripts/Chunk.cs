@@ -4,9 +4,9 @@ using UnityEngine;
 
 [RequireComponent(typeof(MeshFilter),typeof(MeshRenderer),typeof(MeshCollider))]
 public class Chunk : MonoBehaviour {
-    int width = 32;
+    int width = 64;
     int height = 32;
-    int depth = 32;
+    int depth = 64;
     
     MarchingCube marching;
     MeshFilter meshFilter;
@@ -57,7 +57,7 @@ public class Chunk : MonoBehaviour {
         
     }
 
-    Vector3 size = new Vector3(32, 32, 32);
+    Vector3 size = new Vector3(64, 32, 64);
     public void OnDrawGizmos() {
         Gizmos.DrawWireCube(size / 2 + transform.position,size);
     }

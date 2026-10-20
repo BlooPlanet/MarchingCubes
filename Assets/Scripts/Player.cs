@@ -8,13 +8,14 @@ public class Player : MonoBehaviour {
     float moveSpeed = 5f;
     float walkSpeed = 5f;
     float flySpeed = 11f;
-    bool flytoggle = true;
+    bool flytoggle = false;
     Vector3 finalVelocity;
     Vector3 gravityForce;
     float gravity = -9.8f;
     public Transform cameraT;
 
     public void Start() {
+        transform.position = new Vector3(4 * 32, 36, 4 * 32);
         controller = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
