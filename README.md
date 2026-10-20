@@ -16,8 +16,8 @@ Local Setup Instruction: first step download project source code and then open d
 Note:you need unity 2022.3 game engine.
 
 Credits:
-Sebastian lague: https://www.youtube.com/watch?v=M3iI2l0ltbE
-Graphics Standford Edu: https://graphics.stanford.edu/~mdfisher/MarchingCubes.html
-NVIDIA: https://developer.nvidia.com/gpugems/gpugems3/part-i-geometry/chapter-1-generating-complex-procedural-terrains-using-gpu
-b3agz: https://www.youtube.com/watch?v=dTdn3CC64sc&t=1368s
-Unity 2022.3
+Sebastian lague: https://www.youtube.com/watch?v=M3iI2l0ltbE .
+Graphics Standford Edu: https://graphics.stanford.edu/~mdfisher/MarchingCubes.html .
+NVIDIA: https://developer.nvidia.com/gpugems/gpugems3/part-i-geometry/chapter-1-generating-complex-procedural-terrains-using-gpu .
+b3agz: https://www.youtube.com/watch?v=dTdn3CC64sc&t=1368s .
+Unity 2022.3.
