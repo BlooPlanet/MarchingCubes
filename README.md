@@ -3,9 +3,9 @@ A simple 'Marching Cube" algorithm to generate complex terrain and other stuff.
 <img width="1800" height="939" alt="Screenshot 2026-10-21 at 07 45 54" src="https://github.com/user-attachments/assets/cfa0ee8d-6ef8-4fab-a641-3ba2fe9dbfec" />
 try it: https://blooplanet.itch.io/marching-cube
 ```C# Marching Cube API
-  	MarchingCube marchingCube = new MarchingCube(width,height,depth,surfaceLevel,initialDensity);
-	marchingCube.SetDensity(coordinate,densityValue); // you can set density from this function
-	Mesh mesh = marching.ConstructMesh(); // this build mesh and return mesh type from density points
+MarchingCube marchingCube = new MarchingCube(width,height,depth,surfaceLevel,initialDensity);
+marchingCube.SetDensity(coordinate,densityValue); // you can set density from this function
+Mesh mesh = marching.ConstructMesh(); // this build mesh and return mesh type from density points
 ```
 Features:
 - easy to use interface (api)
